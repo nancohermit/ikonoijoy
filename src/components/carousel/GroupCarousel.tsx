@@ -2,8 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import type { Group, CarouselImage } from "@/types";
 
 interface Props {
@@ -20,8 +18,6 @@ const colorMap: Record<string, { from: string; to: string }> = {
 export default function GroupCarousel({ groups, carouselImages }: Props) {
   const [current, setCurrent] = useState(0);
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
-  const pathname = usePathname();
-  const locale = pathname.startsWith("/zh") ? "zh" : "ja";
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % groups.length);
@@ -75,9 +71,8 @@ export default function GroupCarousel({ groups, carouselImages }: Props) {
               </span>
             </div>
 
-            {/* Clickable image area */}
-            <Link
-              href={`/${locale}/about?group=${group.slug}`}
+            {/* Image area */}
+            <div
               className="relative w-full overflow-hidden rounded-xl"
               style={{ aspectRatio: "16 / 9", maxHeight: "70vh" }}
             >
@@ -98,7 +93,7 @@ export default function GroupCarousel({ groups, carouselImages }: Props) {
                   }}
                 />
               )}
-            </Link>
+            </div>
           </div>
         );
       })}
