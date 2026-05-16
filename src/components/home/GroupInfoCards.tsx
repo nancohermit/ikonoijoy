@@ -30,9 +30,17 @@ export default function GroupInfoCards({ groups, locale }: Props) {
               href={`/${locale}/about?group=${group.slug}`}
               className={`${s.bg} ${s.border} border rounded-2xl p-6 text-center hover:scale-[1.02] transition-transform`}
             >
-              <div className="text-3xl mb-3" style={{ color: s.text.replace(/\[|\]/g, "") }}>
-                ♡
-              </div>
+              {group.logo_url ? (
+                <img
+                  src={group.logo_url}
+                  alt={group.name_ja}
+                  className="max-h-10 mx-auto mb-3"
+                />
+              ) : (
+                <div className="text-3xl mb-3" style={{ color: s.text.replace(/\[|\]/g, "") }}>
+                  ♡
+                </div>
+              )}
               <h3 className={`text-xl font-bold mb-2 ${s.text}`}>{group.name_ja}</h3>
               <p className="text-xs text-gray-500 line-clamp-3">
                 {locale === "ja" ? group.description_ja : group.description_cn}

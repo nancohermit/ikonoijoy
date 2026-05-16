@@ -18,6 +18,7 @@ export default function MemberCard({ member, onClick }: Props) {
     <button
       onClick={() => onClick(member)}
       className="bg-white rounded-2xl p-4 text-center border border-border-soft hover:shadow-md hover:scale-[1.02] transition-all w-full"
+      style={{ borderTop: `3px solid ${member.group?.color ?? "#dc7280"}` }}
     >
       <div
         className={`w-16 h-16 sm:w-20 sm:h-20 ${bgClass} rounded-full mx-auto mb-3 flex items-center justify-center text-2xl`}

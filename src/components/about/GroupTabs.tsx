@@ -26,26 +26,29 @@ export default function GroupTabs({ groups, locale, defaultGroup }: Props) {
             <TabsTrigger
               key={group.slug}
               value={group.slug}
-              className="rounded-full px-5 py-2 data-[state=active]:text-white text-sm transition-colors"
+              className="rounded-full px-6 py-2.5 data-[state=active]:text-white text-base font-medium transition-colors"
               style={{
                 backgroundColor: "transparent",
                 color: group.color,
                 border: `2px solid ${group.color}`,
               }}
-            />
+            >
+              {group.name_ja}
+            </TabsTrigger>
           ))}
         </TabsList>
         {groups.map((group) => (
           <TabsContent key={group.slug} value={group.slug}>
             <div className="text-center">
-              {group.logo_url && (
+              {group.logo_url ? (
                 <img
                   src={group.logo_url}
                   alt={group.name_ja}
                   className="max-h-20 mx-auto mb-6"
                 />
+              ) : (
+                <div className="text-4xl mb-4">♡</div>
               )}
-              <div className="text-4xl mb-4">♡</div>
               <h2 className="text-xl font-bold mb-4" style={{ color: group.color }}>
                 {group.name_ja}
               </h2>

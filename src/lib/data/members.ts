@@ -17,13 +17,29 @@ export async function searchMembers(params: {
     .order("sort_order", { ascending: true });
 
   if (search) {
-    query = query.or(
-      `name_ja.ilike.%${search}%,name_cn.ilike.%${search}%,name_en.ilike.%${search}%`
-    );
+    const stripped = search.replace(/\s/g, "");
+    const filters = [
+      `name_ja.ilike.%${search}%`,
+      `name_cn.ilike.%${search}%`,
+      `name_en.ilike.%${search}%`,
+    ];
+    if (stripped !== search) {
+      filters.push(`name_ja.ilike.%${stripped}%`);
+      filters.push(`name_cn.ilike.%${stripped}%`);
+    }
+    query = query.or(filters.join(","));
   }
 
   if (group && group !== "all") {
-    query = query.eq("groups.slug", group);
+    const { data: groupData } = await supabase
+      .from("groups").select("id").eq("slug", group).single();
+    if (groupData) {
+      query = query.eq("group_id", groupData.id);
+    }
+    query = query.order("name_en", { ascending: true });
+  } else {
+    query = query.order("groups(sort_order)", { ascending: true })
+                 .order("name_en", { ascending: true });
   }
 
   const from = (page - 1) * limit;

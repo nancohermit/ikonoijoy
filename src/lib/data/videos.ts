@@ -7,7 +7,7 @@ export async function getVideos(groupSlug?: string, limit?: number): Promise<Vid
   let query = supabase
     .from("videos")
     .select("*, group:groups(*)")
-    .order("sort_order", { ascending: true });
+    .order("created_at", { ascending: false });
 
   if (groupSlug) {
     query = query.eq("groups.slug", groupSlug);
