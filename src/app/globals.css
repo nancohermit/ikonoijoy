@@ -39,6 +39,17 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-love: #dc7280;
+  --color-love-light: #ffe0e5;
+  --color-love-soft: #ffd0d8;
+  --color-me: #8bcabe;
+  --color-me-light: #d5f0ed;
+  --color-me-soft: #c0e8e4;
+  --color-joy: #fae06d;
+  --color-joy-light: #fff6d5;
+  --color-joy-soft: #ffeeaa;
+  --color-bg-warm: #fffbf0;
+  --color-border-soft: #f0d0d0;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
