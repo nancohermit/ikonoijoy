@@ -13,7 +13,8 @@ export async function searchMembers(params: {
 
   let query = supabase
     .from("members")
-    .select("*, group:groups(*)", { count: "exact" });
+    .select("*, group:groups(*)", { count: "exact" })
+    .order("sort_order", { ascending: true });
 
   if (search) {
     const stripped = search.replace(/\s/g, "");
@@ -35,11 +36,11 @@ export async function searchMembers(params: {
     if (groupData) {
       query = query.eq("group_id", groupData.id);
     }
+    query = query.order("name_en", { ascending: true });
+  } else {
+    query = query.order("group(sort_order)", { ascending: true })
+                 .order("name_en", { ascending: true });
   }
-
-  // Always order by group sort_order first, then member name
-  query = query.order("groups(sort_order)", { ascending: true })
-               .order("name_en", { ascending: true });
 
   const from = (page - 1) * limit;
   const to = from + limit - 1;
