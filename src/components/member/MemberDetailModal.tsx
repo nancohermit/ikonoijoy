@@ -23,9 +23,9 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
   if (!member) return null;
 
   const groupColorMap: Record<string, { from: string; to: string; text: string }> = {
-    "#dc7280": { from: "#ffe0e5", to: "#ffd0d8", text: "#b06070" },
-    "#8bcabe": { from: "#d5f0ed", to: "#c0e8e4", text: "#509090" },
-    "#fae06d": { from: "#fff6d5", to: "#ffeeaa", text: "#b09020" },
+    "#dc7280": { from: "#ffe0e5", to: "#dc7280", text: "#b06070" },
+    "#8bcabe": { from: "#d5f0ed", to: "#8bcabe", text: "#509090" },
+    "#fae06d": { from: "#fff6d5", to: "#fae06d", text: "#b09020" },
   };
   const colors = groupColorMap[member.group?.color ?? ""] || groupColorMap["#dc7280"];
 
@@ -40,10 +40,10 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm rounded-2xl border-border-soft">
+      <DialogContent className="max-w-sm rounded-2xl border-border-soft overflow-hidden">
         <DialogHeader>
           <div
-            className="-mx-6 -mt-6 pt-10 pb-8 text-center rounded-t-2xl"
+            className="-mx-4 -mt-4 pt-10 pb-8 text-center rounded-t-2xl"
             style={{
               background: `linear-gradient(135deg, ${colors.from}, ${colors.to})`,
             }}

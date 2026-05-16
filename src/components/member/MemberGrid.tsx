@@ -2,19 +2,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Input } from "@/components/ui/input";
 import type { Member, MembersResponse } from "@/types";
 import MemberCard from "./MemberCard";
 import MemberDetailModal from "./MemberDetailModal";
 
 interface Props {
-  groups: { slug: string; name_ja: string; color: string }[];
-  locale: string;
+  groups: { slug: string; name_ja: string; name_cn: string; color: string }[];
 }
 
-export default function MemberGrid({ groups, locale }: Props) {
+export default function MemberGrid({ groups }: Props) {
   const t = useTranslations("members");
+  const locale = useLocale();
   const [search, setSearch] = useState("");
   const [activeGroup, setActiveGroup] = useState("all");
   const [members, setMembers] = useState<Member[]>([]);
@@ -23,6 +23,8 @@ export default function MemberGrid({ groups, locale }: Props) {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchMembers = async () => {
       setLoading(true);
       const params = new URLSearchParams();
@@ -30,14 +32,24 @@ export default function MemberGrid({ groups, locale }: Props) {
       if (activeGroup !== "all") params.set("group", activeGroup);
       params.set("limit", "50");
 
-      const res = await fetch(`/api/members?${params.toString()}`);
-      const json: MembersResponse = await res.json();
-      setMembers(json.data);
-      setLoading(false);
+      try {
+        const res = await fetch(`/api/members?${params.toString()}`, {
+          signal: controller.signal,
+        });
+        const json: MembersResponse = await res.json();
+        setMembers(json.data);
+        setLoading(false);
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+        setLoading(false);
+      }
     };
 
     const debounce = setTimeout(fetchMembers, 300);
-    return () => clearTimeout(debounce);
+    return () => {
+      clearTimeout(debounce);
+      controller.abort();
+    };
   }, [search, activeGroup]);
 
   return (
@@ -46,12 +58,12 @@ export default function MemberGrid({ groups, locale }: Props) {
         {t("title")}
       </h1>
 
-      <div className="mb-6">
+      <div className="mb-6 flex justify-center">
         <Input
           placeholder={t("searchPlaceholder")}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="max-w-sm mx-auto rounded-full border-2 border-border-soft focus:border-love text-sm h-10"
+          className="max-w-sm rounded-full border-2 border-border-soft focus:border-love text-sm h-10"
         />
       </div>
 
@@ -79,7 +91,7 @@ export default function MemberGrid({ groups, locale }: Props) {
               activeGroup === g.slug ? { backgroundColor: g.color } : undefined
             }
           >
-            {g.name_ja}
+            {locale === "zh" ? g.name_cn : g.name_ja}
           </button>
         ))}
       </div>

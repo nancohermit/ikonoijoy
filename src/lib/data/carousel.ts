@@ -11,3 +11,12 @@ export async function getCarouselsByGroup(groupId: string): Promise<CarouselImag
     .order("sort_order", { ascending: true });
   return data ?? [];
 }
+
+export async function getAllCarouselImages(): Promise<CarouselImage[]> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("carousel_images")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  return data ?? [];
+}

@@ -26,8 +26,10 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-border-soft">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link href={`/${locale}`} className="flex items-center gap-2">
-          <span className="text-lg font-bold text-love">
-            イコノイジョイ
+          <span className="text-lg font-bold">
+            <span style={{ color: "#dc7280" }}>イコ</span>
+            <span style={{ color: "#8bcabe" }}>ノイ</span>
+            <span style={{ color: "#fae06d" }}>ジョイ</span>
           </span>
         </Link>
 

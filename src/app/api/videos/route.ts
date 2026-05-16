@@ -8,6 +8,14 @@ export async function GET(request: NextRequest) {
   const limit = searchParams.get("limit")
     ? parseInt(searchParams.get("limit")!)
     : undefined;
+  const page = searchParams.get("page")
+    ? parseInt(searchParams.get("page")!)
+    : undefined;
+
+  if (page) {
+    const result = await getVideos(group, limit ?? 9, page, true);
+    return NextResponse.json(result);
+  }
 
   const videos = await getVideos(group, limit);
   return NextResponse.json({ data: videos });

@@ -1,16 +1,16 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Group } from "@/types";
 
 interface Props {
   groups: Group[];
-  locale: string;
   defaultGroup?: string;
 }
 
-export default function GroupTabs({ groups, locale, defaultGroup }: Props) {
+export default function GroupTabs({ groups, defaultGroup }: Props) {
+  const locale = useLocale();
   const t = useTranslations("about");
   const defaultTab = defaultGroup || groups[0]?.slug;
 
@@ -20,7 +20,7 @@ export default function GroupTabs({ groups, locale, defaultGroup }: Props) {
         {t("title")}
       </h1>
 
-      <Tabs defaultValue={defaultTab}>
+      <Tabs defaultValue={defaultTab} className="items-center">
         <TabsList className="flex justify-center gap-2 bg-transparent mb-8">
           {groups.map((group) => (
             <TabsTrigger
@@ -33,7 +33,7 @@ export default function GroupTabs({ groups, locale, defaultGroup }: Props) {
                 border: `2px solid ${group.color}`,
               }}
             >
-              {group.name_ja}
+              {locale === "zh" ? group.name_cn : group.name_ja}
             </TabsTrigger>
           ))}
         </TabsList>
