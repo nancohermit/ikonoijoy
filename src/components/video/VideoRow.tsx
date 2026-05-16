@@ -19,7 +19,7 @@ export default function VideoRow({ videos, locale }: Props) {
   return (
     <section className="max-w-6xl mx-auto px-4 py-12">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-love">♡ {t("recommendedVideos")}</h2>
+        <h2 className="text-2xl font-bold text-love">{t("recommendedVideos")}</h2>
         <Link
           href={`/${locale}/videos`}
           className="text-sm text-love hover:underline"

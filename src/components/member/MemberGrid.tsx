@@ -43,7 +43,7 @@ export default function MemberGrid({ groups, locale }: Props) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold text-center mb-6 text-love">
-        ♡ {t("title")}
+        {t("title")}
       </h1>
 
       <div className="mb-6">

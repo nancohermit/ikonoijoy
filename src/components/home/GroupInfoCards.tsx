@@ -20,7 +20,7 @@ export default function GroupInfoCards({ groups, locale }: Props) {
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-12">
-      <h2 className="text-2xl font-bold text-center mb-8 text-love">♡ {t("aboutGroups")}</h2>
+      <h2 className="text-2xl font-bold text-center mb-8 text-love">{t("aboutGroups")}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {groups.map((group) => {
           const s = colorStyles[group.color] || colorStyles["#dc7280"];

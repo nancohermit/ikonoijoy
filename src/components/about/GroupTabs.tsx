@@ -17,7 +17,7 @@ export default function GroupTabs({ groups, locale, defaultGroup }: Props) {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold text-center mb-8 text-love">
-        ♡ {t("title")}
+        {t("title")}
       </h1>
 
       <Tabs defaultValue={defaultTab}>

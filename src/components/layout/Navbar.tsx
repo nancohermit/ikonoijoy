@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link href={`/${locale}`} className="flex items-center gap-2">
           <span className="text-lg font-bold text-love">
-            ♡ イコノイジョイ
+            イコノイジョイ
           </span>
         </Link>
 
