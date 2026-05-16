@@ -96,21 +96,28 @@ export default function MemberGrid({ groups }: Props) {
         ))}
       </div>
 
-      {loading ? (
-        <div className="text-center text-gray-400 py-12">Loading...</div>
-      ) : members.length === 0 ? (
+      {!loading && members.length === 0 ? (
         <div className="text-center text-gray-400 py-12">{t("noResults")}</div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {members.map((m) => (
-            <MemberCard
+        <div
+          className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 transition-opacity duration-300 ${
+            loading ? "opacity-50" : "opacity-100"
+          }`}
+        >
+          {members.map((m, i) => (
+            <div
               key={m.id}
-              member={m}
-              onClick={(member) => {
-                setSelectedMember(member);
-                setModalOpen(true);
-              }}
-            />
+              className="animate-in fade-in-0 slide-in-from-bottom-4 duration-300"
+              style={{ animationDelay: `${i * 40}ms`, animationFillMode: "both" }}
+            >
+              <MemberCard
+                member={m}
+                onClick={(member) => {
+                  setSelectedMember(member);
+                  setModalOpen(true);
+                }}
+              />
+            </div>
           ))}
         </div>
       )}
