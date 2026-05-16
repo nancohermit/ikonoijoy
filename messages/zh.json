@@ -1,0 +1,42 @@
+{
+  "site": {
+    "title": "イコノイジョイ",
+    "subtitle": "指原莉乃制作"
+  },
+  "nav": {
+    "home": "首页",
+    "members": "成员",
+    "about": "组合介绍",
+    "videos": "视频"
+  },
+  "home": {
+    "carouselAria": "组合轮播",
+    "aboutGroups": "关于组合",
+    "recommendedVideos": "推荐视频",
+    "viewAllVideos": "查看全部视频"
+  },
+  "members": {
+    "title": "成员列表",
+    "searchPlaceholder": "搜索成员名字...",
+    "allGroups": "全部",
+    "noResults": "未找到成员",
+    "group": "所属组合",
+    "birthday": "生日",
+    "birthplace": "出身地",
+    "height": "身高",
+    "bloodType": "血型",
+    "hobby": "爱好"
+  },
+  "about": {
+    "title": "组合介绍",
+    "officialSite": "官方网站",
+    "youtube": "YouTube"
+  },
+  "videos": {
+    "title": "视频列表",
+    "watchOnYoutube": "在YouTube上观看"
+  },
+  "footer": {
+    "copyright": "© 2025 イコノイジョイ"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "site": {
+    "title": "イコノイジョイ",
+    "subtitle": "指原莉乃プロデュース"
+  },
+  "nav": {
+    "home": "ホーム",
+    "members": "メンバー",
+    "about": "グループ紹介",
+    "videos": "動画"
+  },
+  "home": {
+    "carouselAria": "グループカルーセル",
+    "aboutGroups": "グループについて",
+    "recommendedVideos": "おすすめ動画",
+    "viewAllVideos": "すべての動画を見る"
+  },
+  "members": {
+    "title": "メンバー一覧",
+    "searchPlaceholder": "名前でメンバーを検索...",
+    "allGroups": "すべて",
+    "noResults": "メンバーが見つかりませんでした",
+    "group": "所属グループ",
+    "birthday": "誕生日",
+    "birthplace": "出身地",
+    "height": "身長",
+    "bloodType": "血液型",
+    "hobby": "趣味"
+  },
+  "about": {
+    "title": "グループ紹介",
+    "officialSite": "公式サイト",
+    "youtube": "YouTube"
+  },
+  "videos": {
+    "title": "動画一覧",
+    "watchOnYoutube": "YouTubeで見る"
+  },
+  "footer": {
+    "copyright": "© 2025 イコノイジョイ"
+  }
+}
