@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init *)",
+      "Bash(echo 'node_modules/ *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(cd /tmp)",
+      "Bash(rm -rf ikonoijoy-temp)",
+      "Bash(npx create-next-app@latest ikonoijoy-temp --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)"
+    ]
+  }
+}
