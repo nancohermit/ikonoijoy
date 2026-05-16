@@ -19,6 +19,7 @@ const colorMap: Record<string, { from: string; to: string; text: string }> = {
 
 export default function GroupCarousel({ groups, carouselImages }: Props) {
   const [current, setCurrent] = useState(0);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   const pathname = usePathname();
   const locale = pathname.startsWith("/zh") ? "zh" : "ja";
 
@@ -54,13 +55,14 @@ export default function GroupCarousel({ groups, carouselImages }: Props) {
               isActive ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
-            {imageUrl ? (
+            {imageUrl && !imageErrors.has(group.id) ? (
               <Image
                 src={imageUrl}
                 alt={group.name_ja}
                 fill
                 className="object-cover"
                 priority={i === 0}
+                onError={() => setImageErrors(prev => new Set(prev).add(group.id))}
               />
             ) : (
               <div

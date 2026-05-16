@@ -23,9 +23,18 @@ export async function searchMembers(params: {
       `name_cn.ilike.%${search}%`,
       `name_en.ilike.%${search}%`,
     ];
+    // Add space-stripped variant for all fields
     if (stripped !== search) {
       filters.push(`name_ja.ilike.%${stripped}%`);
       filters.push(`name_cn.ilike.%${stripped}%`);
+      filters.push(`name_en.ilike.%${stripped}%`);
+    }
+    // For short queries, add wildcard-between-chars to match names with spaces
+    if (stripped.length >= 2 && stripped.length <= 6) {
+      const wildcarded = stripped.split("").join("%");
+      filters.push(`name_ja.ilike.%${wildcarded}%`);
+      filters.push(`name_cn.ilike.%${wildcarded}%`);
+      filters.push(`name_en.ilike.%${wildcarded}%`);
     }
     query = query.or(filters.join(","));
   }

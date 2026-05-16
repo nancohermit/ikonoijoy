@@ -14,7 +14,7 @@ export default function VideoCard({ video, locale }: Props) {
       href={video.youtube_url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-shrink-0 w-48 sm:w-56 group"
+      className="block w-full group"
     >
       <div className="relative aspect-video rounded-xl overflow-hidden border border-border-soft bg-gray-100">
         {video.thumbnail_url ? (
@@ -30,7 +30,7 @@ export default function VideoCard({ video, locale }: Props) {
           </div>
         )}
       </div>
-      <p className="mt-2 text-xs text-gray-600 line-clamp-2 group-hover:text-love transition-colors">
+      <p className="mt-2 text-xs text-gray-600 line-clamp-2 group-hover:text-love transition-colors text-center">
         {title}
       </p>
     </a>

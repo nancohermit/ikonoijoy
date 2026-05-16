@@ -22,10 +22,10 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
 
   if (!member) return null;
 
-  const groupColorMap: Record<string, { from: string; to: string; text: string }> = {
-    "#dc7280": { from: "#ffe0e5", to: "#dc7280", text: "#b06070" },
-    "#8bcabe": { from: "#d5f0ed", to: "#8bcabe", text: "#509090" },
-    "#fae06d": { from: "#fff6d5", to: "#fae06d", text: "#b09020" },
+  const groupColorMap: Record<string, { from: string; to: string }> = {
+    "#dc7280": { from: "#ffe0e5", to: "#dc7280" },
+    "#8bcabe": { from: "#d5f0ed", to: "#8bcabe" },
+    "#fae06d": { from: "#fff6d5", to: "#fae06d" },
   };
   const colors = groupColorMap[member.group?.color ?? ""] || groupColorMap["#dc7280"];
 
@@ -40,14 +40,14 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-sm rounded-2xl border-border-soft overflow-hidden">
+      <DialogContent
+        className="max-w-sm rounded-2xl border-border-soft overflow-hidden"
+        style={{
+          background: `linear-gradient(135deg, ${colors.from}, ${colors.to})`,
+        }}
+      >
         <DialogHeader>
-          <div
-            className="-mx-4 -mt-4 pt-10 pb-8 text-center rounded-t-2xl"
-            style={{
-              background: `linear-gradient(135deg, ${colors.from}, ${colors.to})`,
-            }}
-          >
+          <div className="-mx-4 -mt-4 pt-10 pb-6 text-center">
             <div className="w-20 h-20 bg-white rounded-full mx-auto mb-3 flex items-center justify-center text-3xl">
               {member.profile_image_url ? (
                 <img
@@ -59,23 +59,23 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
                 "♡"
               )}
             </div>
-            <DialogTitle className="text-xl font-bold" style={{ color: colors.text }}>
+            <DialogTitle className="text-xl font-bold text-white">
               {member.name_ja}
             </DialogTitle>
             {member.name_cn && (
-              <p className="text-xs mt-1 opacity-70" style={{ color: colors.text }}>
+              <p className="text-xs mt-1 text-white/70">
                 {member.name_cn}
               </p>
             )}
           </div>
         </DialogHeader>
-        <div className="grid grid-cols-2 gap-3 mt-4">
+        <div className="grid grid-cols-2 gap-3 mt-2">
           {infoItems.map(
             (item) =>
               item.value && (
                 <div key={item.label}>
-                  <p className="text-[10px] text-gray-400">{item.label}</p>
-                  <p className="text-sm text-gray-700">{item.value}</p>
+                  <p className="text-[10px] text-white/60">{item.label}</p>
+                  <p className="text-sm text-white font-medium">{item.value}</p>
                 </div>
               )
           )}
