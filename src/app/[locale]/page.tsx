@@ -1,7 +1,25 @@
-export default function HomePage() {
+import { getAllGroups } from "@/lib/data/groups";
+import { getVideos } from "@/lib/data/videos";
+import GroupCarousel from "@/components/carousel/GroupCarousel";
+import GroupInfoCards from "@/components/home/GroupInfoCards";
+import VideoRow from "@/components/video/VideoRow";
+
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const [groups, videos] = await Promise.all([
+    getAllGroups(),
+    getVideos(undefined, 8),
+  ]);
+
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-pink-400">イコノイジョイ</h1>
-    </main>
+    <div>
+      <GroupCarousel groups={groups} />
+      <GroupInfoCards groups={groups} locale={locale} />
+      <VideoRow videos={videos} locale={locale} />
+    </div>
   );
 }
