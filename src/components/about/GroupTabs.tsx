@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Group } from "@/types";
@@ -26,7 +27,7 @@ export default function GroupTabs({ groups, defaultGroup }: Props) {
             <TabsTrigger
               key={group.slug}
               value={group.slug}
-              className="rounded-full px-6 py-2.5 data-[state=active]:text-white text-base font-medium transition-colors"
+              className="rounded-full px-6 py-2.5 data-[state=active]:text-white text-base font-medium transition-all duration-300 hover:scale-105"
               style={{
                 backgroundColor: "transparent",
                 color: group.color,
@@ -39,12 +40,14 @@ export default function GroupTabs({ groups, defaultGroup }: Props) {
         </TabsList>
         {groups.map((group) => (
           <TabsContent key={group.slug} value={group.slug}>
-            <div className="text-center">
+            <div className="text-center animate-in fade-in-0 slide-in-from-bottom-4 duration-300">
               {group.logo_url ? (
-                <img
+                <Image
                   src={group.logo_url}
                   alt={group.name_ja}
-                  className="max-h-20 mx-auto mb-6"
+                  width={200}
+                  height={80}
+                  className="max-h-20 w-auto mx-auto mb-6 object-contain"
                 />
               ) : (
                 <div className="text-4xl mb-4">♡</div>

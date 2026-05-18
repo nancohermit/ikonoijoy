@@ -27,9 +27,9 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
         <Link href={`/${locale}`} className="flex items-center gap-2">
           <span className="text-lg font-bold">
-            <span style={{ color: "#dc7280" }}>イコ</span>
-            <span style={{ color: "#8bcabe" }}>ノイ</span>
-            <span style={{ color: "#fae06d" }}>ジョイ</span>
+            <span className="text-love">イコ</span>
+            <span className="text-me">ノイ</span>
+            <span className="text-joy">ジョイ</span>
           </span>
         </Link>
 
@@ -53,14 +53,23 @@ export default function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="メニュー"
         >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <Menu
+            className={`w-5 h-5 transition-all duration-300 ${
+              mobileOpen ? "opacity-0 rotate-90 absolute" : "opacity-100 rotate-0"
+            }`}
+          />
+          <X
+            className={`w-5 h-5 transition-all duration-300 ${
+              mobileOpen ? "opacity-100 rotate-0" : "opacity-0 -rotate-90 absolute"
+            }`}
+          />
         </button>
 
         <LanguageSwitcher />
       </div>
 
       {mobileOpen && (
-        <div className="sm:hidden absolute top-14 left-0 right-0 bg-white border-b border-border-soft shadow-lg">
+        <div className="sm:hidden absolute top-14 left-0 right-0 bg-white border-b border-border-soft shadow-lg animate-in fade-in-0 slide-in-from-top-2 duration-200">
           <div className="flex flex-col p-4 gap-3">
             <Link href={`/${locale}`} className={linkClass("")} onClick={() => setMobileOpen(false)}>
               {t("home")}

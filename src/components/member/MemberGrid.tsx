@@ -1,9 +1,9 @@
-// src/components/member/MemberGrid.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Input } from "@/components/ui/input";
+import { getGroupColor } from "@/lib/design/colors";
 import type { Member, MembersResponse } from "@/types";
 import MemberCard from "./MemberCard";
 import MemberDetailModal from "./MemberDetailModal";
@@ -78,22 +78,22 @@ export default function MemberGrid({ groups }: Props) {
         >
           {t("allGroups")}
         </button>
-        {groups.map((g) => (
-          <button
-            key={g.slug}
-            onClick={() => setActiveGroup(g.slug)}
-            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${
-              activeGroup === g.slug
-                ? "text-white"
-                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-            }`}
-            style={
-              activeGroup === g.slug ? { backgroundColor: g.color } : undefined
-            }
-          >
-            {locale === "zh" ? g.name_cn : g.name_ja}
-          </button>
-        ))}
+        {groups.map((g) => {
+          const c = getGroupColor(g.color);
+          return (
+            <button
+              key={g.slug}
+              onClick={() => setActiveGroup(g.slug)}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                activeGroup === g.slug
+                  ? `text-white ${c.bg}`
+                  : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+              }`}
+            >
+              {locale === "zh" ? g.name_cn : g.name_ja}
+            </button>
+          );
+        })}
       </div>
 
       {!loading && members.length === 0 ? (

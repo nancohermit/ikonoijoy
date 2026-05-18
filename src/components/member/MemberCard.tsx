@@ -1,4 +1,5 @@
-// src/components/member/MemberCard.tsx
+import Image from "next/image";
+import { getGroupColor } from "@/lib/design/colors";
 import type { Member } from "@/types";
 
 interface Props {
@@ -7,26 +8,23 @@ interface Props {
 }
 
 export default function MemberCard({ member, onClick }: Props) {
-  const groupColorMap: Record<string, string> = {
-    "#dc7280": "bg-love-light",
-    "#8bcabe": "bg-me-light",
-    "#fae06d": "bg-joy-light",
-  };
-  const bgClass = groupColorMap[member.group?.color ?? ""] ?? "bg-love-light";
+  const c = getGroupColor(member.group?.color ?? "");
 
   return (
     <button
       onClick={() => onClick(member)}
       className="bg-white rounded-2xl p-4 text-center border border-border-soft hover:shadow-md hover:scale-[1.02] transition-all w-full"
-      style={{ borderTop: `3px solid ${member.group?.color ?? "#dc7280"}` }}
+      style={{ borderTopColor: c.cssVar }}
     >
       <div
-        className={`w-16 h-16 sm:w-20 sm:h-20 ${bgClass} rounded-full mx-auto mb-3 flex items-center justify-center text-2xl`}
+        className={`w-16 h-16 sm:w-20 sm:h-20 ${c.bgLight} rounded-full mx-auto mb-3 flex items-center justify-center text-2xl border-t-[3px] border-t-transparent`}
       >
         {member.profile_image_url ? (
-          <img
+          <Image
             src={member.profile_image_url}
             alt={member.name_ja}
+            width={80}
+            height={80}
             className="w-full h-full rounded-full object-cover"
           />
         ) : (
@@ -39,8 +37,7 @@ export default function MemberCard({ member, onClick }: Props) {
       )}
       {member.group && (
         <span
-          className="inline-block mt-1.5 px-2 py-0.5 rounded-full text-[10px] text-white"
-          style={{ backgroundColor: member.group.color }}
+          className={`inline-block mt-1.5 px-2 py-0.5 rounded-full text-[10px] text-white ${c.bg}`}
         >
           {member.group.name_ja}
         </span>

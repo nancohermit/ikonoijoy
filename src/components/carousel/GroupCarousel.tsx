@@ -2,18 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { getGroupColor } from "@/lib/design/colors";
 import type { Group, CarouselImage } from "@/types";
 
 interface Props {
   groups: Group[];
   carouselImages: CarouselImage[];
 }
-
-const colorMap: Record<string, { from: string; to: string }> = {
-  "#dc7280": { from: "#ffe0e5", to: "#dc7280" },
-  "#8bcabe": { from: "#d5f0ed", to: "#8bcabe" },
-  "#fae06d": { from: "#fff6d5", to: "#fae06d" },
-};
 
 export default function GroupCarousel({ groups, carouselImages }: Props) {
   const [current, setCurrent] = useState(0);
@@ -42,7 +37,7 @@ export default function GroupCarousel({ groups, carouselImages }: Props) {
           (img) => img.group_id === group.id
         );
         const imageUrl = groupImages[0]?.image_url;
-        const colors = colorMap[group.color] || colorMap["#dc7280"];
+        const c = getGroupColor(group.color);
         const isActive = i === current;
 
         return (
@@ -63,10 +58,7 @@ export default function GroupCarousel({ groups, carouselImages }: Props) {
                   className="object-contain"
                 />
               )}
-              <span
-                className="text-base font-bold"
-                style={{ color: group.color }}
-              >
+              <span className={`text-base font-bold ${c.text}`}>
                 {group.name_ja}
               </span>
             </div>
@@ -87,10 +79,7 @@ export default function GroupCarousel({ groups, carouselImages }: Props) {
                 />
               ) : (
                 <div
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.from}, ${colors.to})`,
-                  }}
+                  className={`absolute inset-0 bg-gradient-to-br ${c.gradientFrom} ${c.gradientTo}`}
                 />
               )}
             </div>

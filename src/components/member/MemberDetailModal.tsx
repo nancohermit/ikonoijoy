@@ -1,6 +1,6 @@
-// src/components/member/MemberDetailModal.tsx
 "use client";
 
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import {
   Dialog,
@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { getGroupColor } from "@/lib/design/colors";
 import type { Member } from "@/types";
 
 interface Props {
@@ -22,15 +23,10 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
 
   if (!member) return null;
 
-  const groupColorMap: Record<string, { from: string; to: string }> = {
-    "#dc7280": { from: "#ffe0e5", to: "#dc7280" },
-    "#8bcabe": { from: "#d5f0ed", to: "#8bcabe" },
-    "#fae06d": { from: "#fff6d5", to: "#fae06d" },
-  };
-  const colors = groupColorMap[member.group?.color ?? ""] || groupColorMap["#dc7280"];
+  const c = getGroupColor(member.group?.color ?? "");
 
   const infoItems: { label: string; value: string | null | undefined }[] = [
-    { label: t("group"), value: member.group?.name_ja },
+    { label: t("group"), value: locale === "zh" && member.group?.name_cn ? member.group.name_cn : member.group?.name_ja },
     { label: t("birthday"), value: member.birthday },
     { label: t("birthplace"), value: member.birthplace },
     { label: t("height"), value: member.height },
@@ -41,18 +37,17 @@ export default function MemberDetailModal({ member, open, onOpenChange }: Props)
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-sm rounded-2xl border-border-soft overflow-hidden"
-        style={{
-          background: `linear-gradient(135deg, ${colors.from}, ${colors.to})`,
-        }}
+        className={`max-w-sm rounded-2xl border-border-soft overflow-hidden bg-gradient-to-br ${c.gradientFrom} ${c.gradientTo}`}
       >
         <DialogHeader>
           <div className="-mx-4 -mt-4 pt-10 pb-6 text-center">
             <div className="w-20 h-20 bg-white rounded-full mx-auto mb-3 flex items-center justify-center text-3xl">
               {member.profile_image_url ? (
-                <img
+                <Image
                   src={member.profile_image_url}
                   alt={member.name_ja}
+                  width={80}
+                  height={80}
                   className="w-full h-full rounded-full object-cover"
                 />
               ) : (
