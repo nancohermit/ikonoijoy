@@ -64,3 +64,36 @@ export interface MembersResponse {
   total: number;
   page: number;
 }
+
+export interface NewsItem {
+  id: string;
+  group_id: string;
+  title: string;
+  date: string;
+  category: string | null;
+  url: string;
+  image_url: string | null;
+  created_at: string;
+  group?: Group;
+}
+
+export interface ScheduleItem {
+  id: string;
+  group_id: string;
+  title: string;
+  date: string;
+  category: string | null;
+  url: string | null;
+  created_at: string;
+  group?: Group;
+}
+
+export interface NewsResponse {
+  data: NewsItem[];
+  total: number;
+}
+
+export interface SchedulesResponse {
+  data: ScheduleItem[];
+  total: number;
+}

@@ -2,8 +2,8 @@ name: Update Data
 
 on:
   schedule:
-    # Run daily at 07:00 UTC (16:00 JST)
-    - cron: "0 7 * * *"
+    # Run weekly on Sunday at 12:00 UTC (21:00 JST)
+    - cron: "0 12 * * 0"
   workflow_dispatch:
 
 jobs:
@@ -23,3 +23,9 @@ jobs:
 
       - name: Update carousel images
         run: python scripts/scrape-carousel-images.py
+
+      - name: Scrape news from official sites
+        run: python scripts/scrape-news.py
+
+      - name: Scrape schedules from official sites
+        run: python scripts/scrape-schedules.py

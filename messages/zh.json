@@ -7,6 +7,8 @@
     "home": "首页",
     "members": "成员",
     "about": "组合介绍",
+    "news": "新闻",
+    "schedule": "日程",
     "videos": "视频"
   },
   "home": {
@@ -35,6 +37,36 @@
   "videos": {
     "title": "视频列表",
     "watchOnYoutube": "在YouTube上观看"
+  },
+  "news": {
+    "title": "新闻",
+    "noNews": "暂无新闻",
+    "category": {
+      "media": "媒体",
+      "release": "发行",
+      "live": "演唱会/活动",
+      "event": "活动",
+      "notice": "通知",
+      "handshake": "握手会",
+      "goods": "周边",
+      "birthday": "生日",
+      "other": "其他"
+    }
+  },
+  "schedule": {
+    "title": "日程",
+    "noSchedules": "暂无日程安排",
+    "category": {
+      "media": "媒体",
+      "release": "发行",
+      "live": "演唱会/活动",
+      "event": "活动",
+      "notice": "通知",
+      "handshake": "握手会",
+      "goods": "周边",
+      "birthday": "生日",
+      "other": "其他"
+    }
   },
   "footer": {
     "copyright": "© 2026 イコノイジョイ"

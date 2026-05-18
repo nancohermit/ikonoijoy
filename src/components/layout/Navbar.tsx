@@ -43,6 +43,12 @@ export default function Navbar() {
           <Link href={`/${locale}/about`} className={linkClass("/about")}>
             {t("about")}
           </Link>
+          <Link href={`/${locale}/news`} className={linkClass("/news")}>
+            {t("news")}
+          </Link>
+          <Link href={`/${locale}/schedule`} className={linkClass("/schedule")}>
+            {t("schedule")}
+          </Link>
           <Link href={`/${locale}/videos`} className={linkClass("/videos")}>
             {t("videos")}
           </Link>
@@ -79,6 +85,12 @@ export default function Navbar() {
             </Link>
             <Link href={`/${locale}/about`} className={linkClass("/about")} onClick={() => setMobileOpen(false)}>
               {t("about")}
+            </Link>
+            <Link href={`/${locale}/news`} className={linkClass("/news")} onClick={() => setMobileOpen(false)}>
+              {t("news")}
+            </Link>
+            <Link href={`/${locale}/schedule`} className={linkClass("/schedule")} onClick={() => setMobileOpen(false)}>
+              {t("schedule")}
             </Link>
             <Link href={`/${locale}/videos`} className={linkClass("/videos")} onClick={() => setMobileOpen(false)}>
               {t("videos")}

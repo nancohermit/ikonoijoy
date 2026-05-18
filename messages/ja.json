@@ -7,6 +7,8 @@
     "home": "ホーム",
     "members": "メンバー",
     "about": "グループ紹介",
+    "news": "ニュース",
+    "schedule": "スケジュール",
     "videos": "動画"
   },
   "home": {
@@ -35,6 +37,36 @@
   "videos": {
     "title": "動画一覧",
     "watchOnYoutube": "YouTubeで見る"
+  },
+  "news": {
+    "title": "ニュース",
+    "noNews": "ニュースはありません",
+    "category": {
+      "media": "メディア",
+      "release": "リリース",
+      "live": "ライブ・イベント",
+      "event": "イベント",
+      "notice": "お知らせ",
+      "handshake": "握手会",
+      "goods": "グッズ",
+      "birthday": "誕生日",
+      "other": "その他"
+    }
+  },
+  "schedule": {
+    "title": "スケジュール",
+    "noSchedules": "予定はありません",
+    "category": {
+      "media": "メディア",
+      "release": "リリース",
+      "live": "ライブ・イベント",
+      "event": "イベント",
+      "notice": "お知らせ",
+      "handshake": "握手会",
+      "goods": "グッズ",
+      "birthday": "誕生日",
+      "other": "その他"
+    }
   },
   "footer": {
     "copyright": "© 2026 イコノイジョイ"
